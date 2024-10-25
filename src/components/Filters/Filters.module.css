@@ -1,0 +1,98 @@
+.form {
+  max-width: 360px;
+}
+
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--gray);
+  margin-bottom: 40px;
+}
+
+.filtersLabel {
+  color: var(--gray);
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+.filtersTitle {
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.filtersTitle::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--gray-light);
+  margin-top: 24px;
+}
+
+.filtersLists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.locationInput {
+  padding: 16px 20px;
+  background-color: var(--inputs);
+  border: none;
+  border-radius: var(--border-radius-inputs);
+}
+
+.equipLabel {
+  display: block;
+  position: relative;
+  height: 96px;
+  width: 112px;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.equipLabel input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 96px;
+  width: 112px;
+  background-color: transparent;
+  border: 1px solid var(--gray-light);
+  border-radius: var(--border-radius-inputs);
+}
+
+.equipLabel:hover input ~ .checkmark {
+  border-color: var(--gray);
+}
+
+.equipLabel input:checked ~ .checkmark {
+  border-color: var(--button);
+}
+.equipWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.itemName {
+  text-transform: capitalize;
+}
