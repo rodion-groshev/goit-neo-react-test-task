@@ -1,8 +1,10 @@
 import css from "./CarItem.module.css";
 import heart from "../../img/Vector.svg";
+import activeHeart from "../../img/Vector-1.svg";
 
 const CarItem = ({
   props: {
+    id,
     gallery,
     name,
     price,
@@ -10,14 +12,17 @@ const CarItem = ({
     reviews,
     location,
     description,
-    AC,
-    TV,
-    transmission,
-    gas,
-    kitchen,
-    bathroom,
+    // AC,
+    // TV,
+    // transmission,
+    // gas,
+    // kitchen,
+    // bathroom,
   },
+  handleClick,
+  favoritesCars,
 }) => {
+  const isFavorite = favoritesCars.includes(id);
   return (
     <div className={css.carItem}>
       <img
@@ -32,8 +37,12 @@ const CarItem = ({
           <h2>{name}</h2>
           <div className={css.priceWrapper}>
             <h2>€{price}.00</h2>
-            <span>
-              <img src={heart}></img>
+            <span className={css.favorites} onClick={() => handleClick(id)}>
+              {isFavorite ? (
+                <img src={activeHeart}></img>
+              ) : (
+                <img src={heart}></img>
+              )}
             </span>
           </div>
         </div>

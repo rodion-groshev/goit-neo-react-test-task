@@ -9,8 +9,13 @@ const slice = createSlice({
     setFavorites: (state, { payload }) => {
       state.favorites.push(payload);
     },
+    deleteFavorite: (state, { payload }) => {
+      return {
+        favorites: state.favorites.filter((fav) => fav != payload),
+      };
+    },
   },
 });
 
-export const { setFavorites } = slice.actions;
+export const { setFavorites, deleteFavorite } = slice.actions;
 export default slice.reducer;
