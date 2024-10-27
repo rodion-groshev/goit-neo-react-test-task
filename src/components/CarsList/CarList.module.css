@@ -1,6 +1,26 @@
+.carsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .carsList {
   display: flex;
   flex-direction: column;
   gap: 32px;
   max-width: 888px;
+}
+.loadMoreBtn {
+  margin-top: 40px;
+  max-width: 145px;
+  max-height: 56px;
+  color: var(--main);
+  background-color: transparent;
+  border: 1px solid var(--gray-light);
+}
+
+.loadMoreBtn:hover,
+.loadMoreBtn:focus {
+  background-color: transparent;
+  border-color: var(--button-hover);
 }

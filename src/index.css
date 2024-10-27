@@ -71,6 +71,7 @@ button {
   border-radius: var(--border-radius-buttons);
   height: 56px;
   width: 166px;
+  color: var(--white);
 }
 
 button:hover,

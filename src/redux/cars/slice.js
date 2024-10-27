@@ -15,6 +15,7 @@ const slice = createSlice({
   name: "cars",
   initialState: {
     items: [],
+    totalPages: null,
     loading: false,
     error: null,
   },
@@ -24,7 +25,8 @@ const slice = createSlice({
       .addCase(fetchCars.fulfilled, (state, { payload }) => {
         state.error = null;
         state.loading = false;
-        state.items = payload;
+        state.items.push(...payload.items);
+        state.totalPages = payload.total;
       })
       .addCase(fetchCars.rejected, handleRejected)
       .addCase(fetchFiltredCars.pending, handlePending)
@@ -32,7 +34,8 @@ const slice = createSlice({
         state.error = null;
         state.loading = false;
         state.items = [];
-        state.items = payload;
+        state.items = payload.items;
+        state.totalPages = payload.total;
       })
       .addCase(fetchFiltredCars.rejected, handleRejected);
   },

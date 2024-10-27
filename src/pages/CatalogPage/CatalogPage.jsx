@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCars, fetchFiltredCars } from "../../redux/cars/operations";
 import CarsList from "../../components/CarsList/CarsList";
@@ -13,29 +13,41 @@ const CatalogPage = () => {
   const filters = useSelector(selectFilters);
 
   const reworkedFilters = (filters) => {
-    const result = { ...filters };
+    const result = { ...filters, page: 1, limit: 4 };
 
     if (result.automatic) {
       result.transmission = "automatic";
       delete result.automatic;
     }
     console.log(result);
-    return Object.fromEntries(
+    const activeValues = Object.fromEntries(
       Object.entries(result).filter(
         ([_, value]) => value === true || value != ""
       )
     );
+
+    return activeValues;
+  };
+
+  const [page, setPage] = useState(2);
+
+  const handleLoadMore = () => {
+    setPage(page + 1);
+    const reworked = reworkedFilters(filters);
+    reworked.page = page;
+    dispatch(fetchCars(reworked));
   };
 
   useEffect(() => {
-    dispatch(fetchFiltredCars(reworkedFilters(filters)));
+    const reworked = reworkedFilters(filters);
+    dispatch(fetchFiltredCars(reworked));
   }, [dispatch, filters]);
 
   return (
     <main className={css.container}>
       <section className={css.catalog}>
         <Filter />
-        <CarsList />
+        <CarsList handleLoadMore={handleLoadMore} />
       </section>
     </main>
   );

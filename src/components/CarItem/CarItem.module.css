@@ -23,14 +23,52 @@
   gap: 12px;
 }
 
+.reviewsWrapper {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+
+}
+
+.reviews {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.location {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
 .description {
   display: -webkit-box;
   line-clamp: 1;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  color: var(--text);
 }
 
 .favorites {
   cursor: pointer;
 }
+
+.badgesWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+
+.carWrapper {
+  position: relative;
+}
+
+.showBtn {
+  position: absolute;
+  bottom: 0;
+  color: ;}
+
