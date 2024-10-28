@@ -5,15 +5,17 @@ import CarsList from "../../components/CarsList/CarsList";
 import Filter from "../../components/Filters/Filters";
 import { selectFilters } from "../../redux/filters/selectors";
 import css from "./CatalogPage.module.css";
+import { selectIsLoading, selectTotalCar } from "../../redux/cars/selectors";
+import { perPage, startPage } from "../../components/Constants/Constants";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(selectIsLoading);
   // const error = useSelector(selectError);
   const filters = useSelector(selectFilters);
+  const totalPages = useSelector(selectTotalCar);
 
   const reworkedFilters = (filters) => {
-    const result = { ...filters, page: 1, limit: 4 };
+    const result = { ...filters, ...startPage, ...perPage };
 
     if (result.automatic) {
       result.transmission = "automatic";
@@ -31,6 +33,9 @@ const CatalogPage = () => {
 
   const [page, setPage] = useState(2);
 
+  const isLoadMore =
+    totalPages !== null && page - 1 < Math.ceil(totalPages / perPage.limit);
+
   const handleLoadMore = () => {
     setPage(page + 1);
     const reworked = reworkedFilters(filters);
@@ -47,7 +52,8 @@ const CatalogPage = () => {
     <main className={css.container}>
       <section className={css.catalog}>
         <Filter />
-        <CarsList handleLoadMore={handleLoadMore} />
+
+        <CarsList handleLoadMore={handleLoadMore} isLoadMore={isLoadMore} />
       </section>
     </main>
   );

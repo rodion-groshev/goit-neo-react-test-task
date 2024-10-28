@@ -11,3 +11,9 @@ export const getCarsApi = async (params) => {
   console.log(response);
   return response.data;
 };
+
+export const getCarByIDApi = async (id) => {
+  const response = await instance.get(`/${id}`);
+  console.log(response);
+  return response.data;
+};

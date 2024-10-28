@@ -12,7 +12,6 @@ import integrated from "../../img/categories/bi_grid.svg";
 import alcove from "../../img/categories/bi_grid-3x3-gap.svg";
 import { setFilters } from "../../redux/filters/slice";
 import { selectFilters } from "../../redux/filters/selectors";
-import { useSearchParams } from "react-router-dom";
 
 const images = {
   AC,

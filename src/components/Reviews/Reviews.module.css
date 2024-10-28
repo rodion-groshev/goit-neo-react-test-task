@@ -1,0 +1,45 @@
+.reviews {
+  max-width: 631px;
+}
+
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.rating {
+  display: flex;
+  gap: 4px;
+}
+
+.reviewsItem {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.reviewWrapper {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.reviewSpan {
+  background-color: var(--badges);
+  padding: 15px 21px;
+  border-radius: 60px;
+  font-size: 24px;
+  color: var(--button);
+}
+
+.ratingWrapper {
+}
+
+.reviewName {
+  font-weight: 600;
+}
+
+.reviewDescription {
+  color: var(--text);
+}

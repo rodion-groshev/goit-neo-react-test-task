@@ -1,0 +1,91 @@
+.container {
+  width: 100%;
+  padding: 0 64px 80px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  margin-top: 48px;
+}
+
+.innerWrapper {
+  display: flex;
+  gap: 40px;
+}
+
+.navBar {
+}
+
+.navWrapper {
+  display: flex;
+}
+
+.navBar::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--gray-light);
+}
+.navLink {
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 40px;
+}
+
+.active::after {
+  content: "";
+  display: block;
+  width: 85px;
+  height: 5px;
+  background-color: var(--button);
+  margin-top: 24px;
+}
+
+.bookForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 44px 57px;
+  border: 2px solid var(--gray-light);
+  border-radius: 10px;
+  min-width: 641px;
+}
+
+.bookText {
+  color: var(--gray);
+  font-weight: 400;
+}
+
+.bookInputs {
+  padding-left: 18px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  background-color: var(--inputs);
+  border: none;
+  border-radius: var(--border-radius-inputs);
+  width: 100%;
+  color: var(--gray);
+}
+
+.bookInputsComment {
+  padding-left: 18px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  background-color: var(--inputs);
+  border: none;
+  border-radius: var(--border-radius-inputs);
+  width: 100%;
+  color: var(--gray);
+  min-height: 118px;
+}
+
+.bookInputsComment::placeholder {
+}
+
+.bookBtn {
+  margin-top: 10px;
+  align-self: center;
+}

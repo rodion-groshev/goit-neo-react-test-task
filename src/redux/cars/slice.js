@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCars, fetchFiltredCars } from "./operations";
+import { fetchCarByID, fetchCars, fetchFiltredCars } from "./operations";
 
 const handlePending = (state) => {
   state.loading = true;
@@ -9,6 +9,7 @@ const handlePending = (state) => {
 const handleRejected = (state, { payload }) => {
   state.error = payload;
   state.loading = false;
+  state.totalPages = null;
 };
 
 const slice = createSlice({
@@ -16,6 +17,7 @@ const slice = createSlice({
   initialState: {
     items: [],
     totalPages: null,
+    item: null,
     loading: false,
     error: null,
   },
@@ -29,7 +31,13 @@ const slice = createSlice({
         state.totalPages = payload.total;
       })
       .addCase(fetchCars.rejected, handleRejected)
-      .addCase(fetchFiltredCars.pending, handlePending)
+
+      .addCase(fetchFiltredCars.pending, (state) => {
+      state.loading = true;
+        state.error = null;
+        state.items = [];
+
+      })
       .addCase(fetchFiltredCars.fulfilled, (state, { payload }) => {
         state.error = null;
         state.loading = false;
@@ -37,7 +45,15 @@ const slice = createSlice({
         state.items = payload.items;
         state.totalPages = payload.total;
       })
-      .addCase(fetchFiltredCars.rejected, handleRejected);
+      .addCase(fetchFiltredCars.rejected, handleRejected)
+
+      .addCase(fetchCarByID.pending, handlePending)
+      .addCase(fetchCarByID.fulfilled, (state, { payload }) => {
+        state.error = null;
+        state.loading = false;
+        state.item = payload;
+      })
+      .addCase(fetchCarByID.rejected, handleRejected);
   },
 });
 

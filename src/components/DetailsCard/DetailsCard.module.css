@@ -1,0 +1,41 @@
+.detailsCard {
+}
+
+.reviewsWrapper {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+.reviews {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.location {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.detailsList {
+  margin-top: 28px;
+  margin-bottom: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+}
+
+.detailsItem {
+}
+
+.detailsImg {
+  object-fit: cover;
+  object-position: 50%;
+  border-radius: 10px;
+}
+.description {
+  color: var(--text);
+}
