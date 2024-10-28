@@ -14,9 +14,10 @@ const DetailsForm = () => {
   const [startDate, setStartDate] = useState(new Date());
   const notify = () => toast.success("Truck booked successfully");
 
-  const handleSubmit = (values) => {
-    notify();
-    console.log({ ...values, date: startDate });
+  const handleSubmit = (values, actions) => {
+    notify({ ...values, date: startDate });
+    actions.resetForm();
+
   };
   const validationSchema = Yup.object().shape({
     name: Yup.string()
