@@ -1,6 +1,6 @@
 .detailsCard {
+  width: 100%;
 }
-
 .reviewsWrapper {
   display: flex;
   gap: 16px;
@@ -26,9 +26,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 48px;
-}
-
-.detailsItem {
 }
 
 .detailsImg {

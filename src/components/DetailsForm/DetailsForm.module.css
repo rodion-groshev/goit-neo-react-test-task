@@ -1,0 +1,42 @@
+.bookForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 44px 57px;
+  border: 2px solid var(--gray-light);
+  border-radius: 10px;
+  min-width: 641px;
+}
+
+.bookText {
+  color: var(--gray);
+  font-weight: 400;
+}
+
+.bookInputs {
+  padding-left: 18px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  background-color: var(--inputs);
+  border: none;
+  border-radius: var(--border-radius-inputs);
+  width: 100%;
+  color: var(--gray);
+}
+
+.bookInputsComment {
+  padding-left: 18px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  background-color: var(--inputs);
+  border: none;
+  border-radius: var(--border-radius-inputs);
+  width: 100%;
+  color: var(--gray);
+  min-height: 118px;
+}
+
+.bookBtn {
+  margin-top: 10px;
+  align-self: center;
+}

@@ -33,10 +33,9 @@ const slice = createSlice({
       .addCase(fetchCars.rejected, handleRejected)
 
       .addCase(fetchFiltredCars.pending, (state) => {
-      state.loading = true;
+        state.loading = true;
         state.error = null;
         state.items = [];
-
       })
       .addCase(fetchFiltredCars.fulfilled, (state, { payload }) => {
         state.error = null;

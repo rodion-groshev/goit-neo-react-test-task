@@ -5,12 +5,11 @@ import CarsList from "../../components/CarsList/CarsList";
 import Filter from "../../components/Filters/Filters";
 import { selectFilters } from "../../redux/filters/selectors";
 import css from "./CatalogPage.module.css";
-import { selectIsLoading, selectTotalCar } from "../../redux/cars/selectors";
+import { selectTotalCar } from "../../redux/cars/selectors";
 import { perPage, startPage } from "../../components/Constants/Constants";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
-  // const error = useSelector(selectError);
   const filters = useSelector(selectFilters);
   const totalPages = useSelector(selectTotalCar);
 
@@ -21,7 +20,7 @@ const CatalogPage = () => {
       result.transmission = "automatic";
       delete result.automatic;
     }
-    console.log(result);
+
     const activeValues = Object.fromEntries(
       Object.entries(result).filter(
         ([_, value]) => value === true || value != ""
@@ -52,7 +51,6 @@ const CatalogPage = () => {
     <main className={css.container}>
       <section className={css.catalog}>
         <Filter />
-
         <CarsList handleLoadMore={handleLoadMore} isLoadMore={isLoadMore} />
       </section>
     </main>

@@ -6,7 +6,7 @@ const instance = axios.create({
 
 export const getCarsApi = async (params) => {
   const response = await instance.get("/", {
-    params: params
+    params: params,
   });
   console.log(response);
   return response.data;

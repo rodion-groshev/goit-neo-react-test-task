@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect } from "react";
 import {
   NavLink,
   Outlet,
@@ -8,34 +8,32 @@ import {
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { selectCar } from "../../redux/cars/selectors";
+import {
+  selectCar,
+  selectIsError,
+  selectIsLoading,
+} from "../../redux/cars/selectors";
 import { fetchCarByID } from "../../redux/cars/operations";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
 import css from "./DetailsPage.module.css";
 import clsx from "clsx";
-import { Field, Form, Formik } from "formik";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import DetailsForm from "../../components/DetailsForm/DetailsForm";
+import Error from "../../components/Error/Error";
+import Loader from "../../components/Loader/Loader";
+import { Toaster } from "react-hot-toast";
 
 const DetailsPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const carByID = useSelector(selectCar);
-  const buildLinkClass = ({ isActive }) => {
-    return clsx(css.navLink, isActive && css.active);
-  };
-
   const navigate = useNavigate();
   const location = useLocation();
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectIsError);
 
-  const handleSubmit = (values) => {
-    console.log({ ...values, date: startDate });
-  };
-  const [startDate, setStartDate] = useState(new Date());
-  const initialValues = {
-    name: "",
-    email: "",
-    comment: "",
+  const buildLinkClass = ({ isActive }) => {
+    return clsx(css.navLink, isActive && css.active);
   };
 
   useEffect(() => {
@@ -50,6 +48,9 @@ const DetailsPage = () => {
   return (
     <main className={css.container}>
       <section className={css.details}>
+        <Toaster />
+        {isError && <Error>{isError}</Error>}
+        {isLoading && <Loader />}
         {carByID && <DetailsCard props={carByID} />}
         {carByID && (
           <nav className={css.navBar}>
@@ -63,48 +64,14 @@ const DetailsPage = () => {
             </div>
           </nav>
         )}
-        <div className={css.innerWrapper}>
-          <Suspense fallback="">
-            <Outlet />
-          </Suspense>
-
-          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-            <Form className={css.bookForm}>
-              <h3>Book your campervan now</h3>
-              <p className={css.bookText}>
-                Stay connected! We are always ready to help you.
-              </p>
-              <Field
-                type="name"
-                className={css.bookInputs}
-                placeholder="Name*"
-                name="name"
-              />
-              <Field
-                type="email"
-                className={css.bookInputs}
-                placeholder="Email*"
-                name="email"
-              />
-              <DatePicker
-                selected={startDate}
-                className={css.bookInputs}
-                placeholderText="Booking date*"
-                onSelect={(date) => setStartDate(date)}
-              />
-
-              <Field
-                type="text"
-                className={css.bookInputsComment}
-                placeholder="Comment"
-                name="comment"
-              />
-              <button className={css.bookBtn} type="submit">
-                Send
-              </button>
-            </Form>
-          </Formik>
-        </div>
+        {carByID && (
+          <div className={css.innerWrapper}>
+            <Suspense fallback="">
+              <Outlet />
+            </Suspense>
+            <DetailsForm />
+          </div>
+        )}
       </section>
     </main>
   );
